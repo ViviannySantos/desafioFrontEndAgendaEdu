@@ -1,2 +1,1 @@
-# desafioFrontEndAgendaEdu
-Desafio Front-end do Agenda Edu (PWA)
+# Desafio Front-end do Agenda Edu (PWA)
