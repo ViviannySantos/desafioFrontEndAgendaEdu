@@ -1,0 +1,63 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.toolbar-md {
+    padding: 10px;
+    min-height: 70px;
+}
+
+.fixbar {
+    width: 81%;
+    height: 30px;
+    position: fixed;
+    left: 10px;
+    margin-top: 10px;
+}
+
+.fixed-content {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    display: block;
+    // background-color: #733cbe;
+    //background-color: #3b3434;
+
+    background: #b5bdc8; /* Old browsers */
+    background: -moz-linear-gradient(top, #b5bdc8 0%, #828c95 36%, #28343b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #b5bdc8 0%,#828c95 36%,#28343b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #b5bdc8 0%,#828c95 36%,#28343b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.toolbar-background-md {
+    border-color: #b2b2b2;
+    background: #4d5860;;
+}
+
+.toolbar-title-md {
+    padding: 0 12px;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #fcfcfc;
+}
+
+.button-clear-md-danger {
+    border-color: transparent;
+    color: #733cbe;
+    background-color: transparent;
+}
