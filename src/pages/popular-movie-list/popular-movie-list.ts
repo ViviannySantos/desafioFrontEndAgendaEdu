@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 
+// import { MovieDetailsPage } from '../movie-details/movie-details';
 import { MovieProvider } from '../../providers/movie/movie';
 import { Movie } from '../../models/movie/movie.model';
 
@@ -78,6 +79,10 @@ export class PopularMovieListPage {
     const searchMameMovie = ev.target.value;
     this.clean();
     this.movieSearch$.next(searchMameMovie);
+  }
+
+  getMovieDetails(movieId: number){
+    this.navCtrl.push('MovieDetailsPage', { movieId: movieId });
   }
 
   ngOnDestroy(): void {
