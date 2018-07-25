@@ -22,13 +22,8 @@
 
   <div class="container-box">
 
-    <aside>
-      <ion-card>
-        <img src="{{'https://image.tmdb.org/t/p/w500'+movie.backdrop_path}}" />
-      </ion-card>
-    </aside>
+    <aside class="box" *ngFor="let genre of movie.genres">
 
-    <main class="box" *ngFor="let genre of movie.genres">
       <h4 class="text-color text-margin">{{movie.original_title}} ({{movie.release_date | date: 'dd/MM/yyyy' }}) </h4>
       <h5 class="text-color text-margin"> Nota: {{movie.vote_average}} </h5>
       <h5 class="text-color text-margin"> Duração: {{movie.runtime}} </h5>
@@ -36,6 +31,12 @@
       <h5 class="text-color text-margin"> Gênero: {{ genre.name }}</h5>
       <h5 class="text-color text-margin"> Linguagem Original: {{ movie.original_language }} </h5>
       <ion-badge class="badge-info" *ngFor="let genre of movie.genres" item-start>{{genre.name}}</ion-badge>
+    </aside>
+
+    <main>
+      <ion-item>
+        <img src="{{'https://image.tmdb.org/t/p/w500'+ movie.backdrop_path}}" />
+      </ion-item>
     </main>
 
   </div>
