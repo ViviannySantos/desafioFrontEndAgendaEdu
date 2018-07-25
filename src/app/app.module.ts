@@ -5,9 +5,22 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { CacheModule } from 'ionic-cache';
+
 import { MyApp } from './app.component';
 import { PopularMovieListPage } from '../pages/popular-movie-list/popular-movie-list';
 import { MovieProvider } from '../providers/movie/movie';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyCU9WR7PVL3xJBXje1zAXXi8a6Qed1kn5E",
+    authDomain: "desafiofrontendagendaedu.firebaseapp.com",
+    databaseURL: "https://desafiofrontendagendaedu.firebaseio.com",
+    projectId: "desafiofrontendagendaedu",
+    storageBucket: "desafiofrontendagendaedu.appspot.com",
+    messagingSenderId: "869985167023"
+};
 
 @NgModule({
   declarations: [
@@ -16,10 +29,10 @@ import { MovieProvider } from '../providers/movie/movie';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, {
-      monthNames: ['Janeiro', 'Fevereiro', 'Mar\u00e7o', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-      monthShortNames: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dev'],
-    }),
+    IonicModule.forRoot(MyApp),
+    CacheModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
