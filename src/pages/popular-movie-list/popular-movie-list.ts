@@ -109,10 +109,6 @@ export class PopularMovieListPage {
     this.getMovies();
   }
 
-  getMovieDetails(movieId: number){
-    this.navCtrl.push('MovieDetailsPage', { movieId: movieId });
-  }
-
   ngOnDestroy(): void {
     if (this.movieSearch$) {
       this.movieSearch$.unsubscribe();
