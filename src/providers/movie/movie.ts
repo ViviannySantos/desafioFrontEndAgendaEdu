@@ -33,6 +33,7 @@ export class MovieProvider {
   }
 
   getMoviesByPage(page: string) {
+
     const ttl = 5;
     const params = this.getURLSearchParams();
     params.set('page', page);
@@ -40,20 +41,17 @@ export class MovieProvider {
       params: params
     }
 
-    // return this.http.get(this.API_PATH + this.POPULAR_MOVIE_PATH, reqOptions)
-    //   .map(response => response.json().results as Movie[]);
-
     const url = this.API_PATH + this.POPULAR_MOVIE_PATH + '?' + reqOptions.params;
 
-    const request = this.http.get(this.API_PATH + this.POPULAR_MOVIE_PATH, reqOptions)
-    const cache = this.cache.loadFromObservable(url, request, this.MOVIE_KEY, ttl).
+    const request = this.http.get(url)
+    const cacheDate = this.cache.loadFromObservable(url, request, this.MOVIE_KEY, ttl).
       map(response => response.json().results as Movie[]);
 
     if (request != null) {
       const req = request.map(response => response.json().results as Movie[]);
       return this.cache.loadFromObservable(url, req, this.MOVIE_KEY, ttl);
     } else {
-      return cache;
+      return cacheDate;
     }
 
   }
@@ -87,8 +85,16 @@ export class MovieProvider {
   }
 
   getFavorites() {
+
     const relative = this.fireDb.list(this.FIREBASE_PATH).valueChanges();
-    return relative;
+    const cacheDate = this.cache.loadFromObservable(this.FIREBASE_PATH, relative, this.MOVIE_KEY).
+      map(response => response.json().results as Movie[]);
+
+    if (relative == null) {
+      return cacheDate;
+    } else {
+      return relative;
+    }
   }
 
 }

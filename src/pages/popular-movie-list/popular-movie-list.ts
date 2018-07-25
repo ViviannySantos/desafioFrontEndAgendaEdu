@@ -34,9 +34,11 @@ export class PopularMovieListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private toast: ToastController,
     public movieProvider: MovieProvider, public toastCtrl: ToastController, public cacheService: CacheService) {
-    if (this.allFilterOption || this.allFilterOption == null) {
-      this.getMovies();
-    }
+    this.getMovies();
+  }
+
+  ionViewDidLoad() {
+    this.getMovies();
   }
 
   private clean() {
@@ -52,7 +54,7 @@ export class PopularMovieListPage {
       message: 'Não foi possível realizar a operação devido a limitação da API. Por favor tente mais tarde.',
       position: 'top', duration: 5000, showCloseButton: true
     });
-
+    this.allFilterOption = true;
     this.movieSearch$
       .debounceTime(500)
       .switchMap((search: string) => {
@@ -73,7 +75,7 @@ export class PopularMovieListPage {
       });
 
     this.allFilterOption = true;
-    setTimeout(() => this.movieSearch$.next(""), 400);
+    setTimeout(() => this.movieSearch$.next(""), 500);
   }
 
   searchMovie(ev: any) {
@@ -114,10 +116,14 @@ export class PopularMovieListPage {
   }
 
   doInfinite(infiniteScroll) {
-    this.movieSearch$.next(this.lastSearch);
-    setTimeout(() => {
+    if (this.allFilterOption || this.allFilterOption == null) {
+      this.movieSearch$.next(this.lastSearch);
+      setTimeout(() => {
+        infiniteScroll.complete();
+      }, 500);
+    } else {
       infiniteScroll.complete();
-    }, 500);
+    }
   }
 
 }
