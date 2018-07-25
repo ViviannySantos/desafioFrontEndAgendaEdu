@@ -15,8 +15,35 @@ export class Movie extends Model {
     adult: boolean;
     overview: string;
     release_date: string;
+    belongs_to_collection: Collection;
+    spoken_languages: Language;
+    production_countries: ProductionCountries;
+    genres: Genres[];
+    
 }
 
 interface Genre {
     id: number;
+}
+
+interface Genres {
+    id: number;
+    name: string;
+}
+
+interface Collection {
+    id: number;
+    name: string;
+    poster_path: string;
+    backdrop_path: string;
+}
+
+interface Language {
+    iso_639_1: string;
+    name: string;
+}
+
+interface ProductionCountries {
+    iso_3166_1: string;
+    name: string;
 }

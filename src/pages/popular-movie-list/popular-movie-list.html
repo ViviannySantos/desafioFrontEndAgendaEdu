@@ -5,42 +5,55 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title class="text-center clear">Filmes mais Populares do TMDb</ion-title>
+    <ion-title class="text-center clear">Filmes Populares</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content class="card-background-page">
 
-  <ion-buttons end class="fixbar">
-    <ion-searchbar (ionInput)='searchMovieByNameAndPage($event)'></ion-searchbar>
-  </ion-buttons>
-
   <ion-grid>
+    <ion-row>
+      <ion-col col-10 col-md-5 col-lg-3>
+        <ion-buttons end class="fixbar">
+          <ion-searchbar (ionInput)='searchMovie($event)' autocorrect="on"></ion-searchbar>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8 col-md-3 col-lg-2>
+        <ion-list>
+          <ion-item>
+            <ion-label>Filtro</ion-label>
+            <ion-select interface="popover">
+              <ion-option (ionSelect)="allMovies()"> Todos </ion-option>
+              <ion-option (ionSelect)="favoritesMovies()"> Favoritos </ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <ion-grid class="grid-movies">
     <ion-row>
       <ion-col col-6 col-md-3 col-lg-2 *ngFor="let movie of movies">
-        <ion-card class='card'>
-          <img src="{{'https://image.tmdb.org/t/p/w500'+movie.poster_path}}" />
+        <ion-card class='card' *ngIf="movie">
+
+          <img (click)='getMovieDetails(movie.id)' src="{{'https://image.tmdb.org/t/p/w185_and_h278_bestv2'+movie.poster_path}}" />
 
           <ion-card-content ion-card clear>
             <p>
               <ion-icon name='md-calendar'></ion-icon>
-              {{movie.release_date | date: 'dd MMMM yyyy'}}
+              {{movie.release_date | date: 'dd/MM/yyyy'}}
             </p>
           </ion-card-content>
 
           <ion-row no-padding class="information">
             <ion-col col-7 col-md-6 col-lg-6>
-              <button ion-button clear small color="danger" icon-start>
+              <button ion-button clear small color="danger" (click)='addFavorite(movie)' icon-start>
                 <ion-icon name='star'></ion-icon>
                 Favorite
-              </button>
-            </ion-col>
-            <ion-col text-center col-5 col-md-6 col-lg-6>
-              <button ion-button clear small color="danger" icon-start>
-                <ion-icon name='md-stats'></ion-icon>
-                {{movie.vote_average}}
               </button>
             </ion-col>
           </ion-row>

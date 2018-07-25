@@ -4,7 +4,6 @@ import { PopularMovieListPage } from './popular-movie-list';
 
 @NgModule({
   declarations: [
-    PopularMovieListPage,
   ],
   imports: [
     IonicPageModule.forChild(PopularMovieListPage),
