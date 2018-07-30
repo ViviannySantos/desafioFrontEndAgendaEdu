@@ -6,7 +6,7 @@ Sistema PWA com Ionic 3
 
 * Linguagem: TypeScript;
 
-* Frent-end: AngularJS 4, CSS 3, HTML 5, Flexbox, Flexbox grid;
+* Frent-end: AngularJS 4, CSS 3, Flexbox, Flexbox grid;
 
 * API: The Movie Database API;
 
