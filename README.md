@@ -1,4 +1,4 @@
-# Desafio Front-end do Agenda Edu (PWA)
+# The Movie DB (PWA)
 
 Descrição das tecnologias utilizadas para o desenvolvimento do sistema de listagem de filmes populares disponibilizados pela API do The Movie Database (TMDb).
 
